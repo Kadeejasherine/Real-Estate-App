@@ -3,18 +3,20 @@ import { useState } from "react"
 import { Link ,useNavigate} from "react-router-dom"
 
 export default function SignUp() {
-  const [formData, setformData] = useState({})
+const [formData, setformData] = useState({})
 const [error, seterror] = useState(null)
 const [loading, setloading] = useState(false)
 const navigate = useNavigate()
-  const handleChange = (e)=>{
+
+
+const handleChange = (e)=>{
      setformData({
       ...formData,
       [e.target.id] : e.target.value,
      })
   }
   
-  console.log(formData)
+  
 
   const handleSubmit = async(e)=>{
     e.preventDefault();
@@ -41,8 +43,6 @@ const navigate = useNavigate()
       setloading(false)
       seterror(error.message)
     }
-
-    
     
   }
 
