@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import {getDownloadURL, getStorage, ref, uploadBytesResumable}  from 'firebase/storage'
 import { app } from '../Firebase';
 import { upadateUserStart,updateUserSuccess,updateUserFailure, signInStart, deleteUserFailure, deleteUserStart, deleteUserSuccess, SignOutUserStart, SignOutUserFailure, SignOutUserSuccess } from '../redux/user/userSlice';
+import { Link } from 'react-router-dom';
 
 
 export default function Profile() {
@@ -133,7 +134,8 @@ setFilePerc(Math.round(progress));
        <input type="text" placeholder='username' defaultValue={currentUser.username} onChange={handleChange} className='border p-3 rounded-lg bg-gray-100' id='username'/>
        <input type="email" placeholder='email' defaultValue={currentUser.email} onChange={handleChange} className='border p-3 rounded-lg bg-gray-100' id='email' />
        <input type="password" placeholder='password' onChange={handleChange} className='border p-3 rounded-lg bg-gray-100' id='password'/>
-       <button disabled={loading} className='bg-red-600 p-3 rounded-lg text-white hover:opacity-90 disabled:opacity-70'>{loading ? 'Loading...' : 'Update'}</button>
+       <button disabled={loading} className='bg-red-600 p-3 rounded-lg text-white hover:opacity-90 disabled:opacity-70'>{loading ? 'Loading...' : 'UPDATE'}</button>
+       <Link to={"/create-listing"} className='uppercase bg-slate-800 p-3 rounded-lg text-white hover:opacity-90 text-center'>Create Listing</Link>
       </form>
       <div className='flex justify-between mt-5'>
         <span className='text-red-600 cursor-pointer' onClick={handleDeleteUser}>Delete account</span>
