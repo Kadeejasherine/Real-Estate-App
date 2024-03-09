@@ -16,6 +16,8 @@ export default function Profile() {
   const [file, setfile] = useState(undefined);
  const [filePerc, setFilePerc] = useState(0)
  const [fileUploadError,setFileUploadError] = useState(false);
+ const [showspacesError, setshowspacesError] = useState(false)
+ const [userSpaces, setuserSpaces] = useState([])
 const [formData, setFormData] = useState({})
 const [updateSuccess, setupdateSuccess] = useState(false)
 
@@ -115,6 +117,21 @@ setFilePerc(Math.round(progress));
 
   }
   
+const handleShowSpaces =async()=>{
+try {
+  setshowspacesError(false);
+  const res = await fetch(`/api/user/listing/${currentUser._id}`)
+  const data = await res.json();
+  if (data.success === false) {
+   setshowspacesError(true);
+   return;
+  }
+  setuserSpaces(data);
+} catch (error) {
+  setshowspacesError(true);
+}
+}
+  
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-semibold text-center my-7'> Profile</h1>
@@ -136,6 +153,8 @@ setFilePerc(Math.round(progress));
        <input type="password" placeholder='password' onChange={handleChange} className='border p-3 rounded-lg bg-gray-100' id='password'/>
        <button disabled={loading} className='bg-red-600 p-3 rounded-lg text-white hover:opacity-90 disabled:opacity-70'>{loading ? 'Loading...' : 'UPDATE'}</button>
        <Link to={"/create-listing"} className='uppercase bg-slate-800 p-3 rounded-lg text-white hover:opacity-90 text-center'>Create Listing</Link>
+       <button onClick={handleShowSpaces} type='button' className='bg-green-600 p-3 rounded-lg text-white hover:opacity-90 disabled:opacity-70 text-center uppercase'>Show Spaces</button>
+
       </form>
       <div className='flex justify-between mt-5'>
         <span className='text-red-600 cursor-pointer' onClick={handleDeleteUser}>Delete account</span>
@@ -143,6 +162,29 @@ setFilePerc(Math.round(progress));
       </div>
       <p className='text-red-600 mt-5'>{error ? error : ""}</p>
       <p className='text-green-500 mt-5'>{updateSuccess ? "Updated successfully" : " "}</p>
+      <p className='text-red-600 mt-5'>{showspacesError ? "Error showing spaces" :""}</p>
+      {userSpaces && userSpaces.length > 0 &&
+      <div className='flex flex-col gap-4'>
+        <h1 className='text-center mt-7 text-2xl font-semibold'>Your Spaces</h1>
+      {userSpaces.map((spaces)=>(
+        <div key={spaces._id} className='border rounded-lg p-3 flex justify-between items-center gap-4'>
+        <Link to={`/listing/${spaces._id}`}>
+          <img src={spaces.imageUrls[0]} alt="spaces" className='h-16 w-16 object-contain'/>
+        </Link>
+        <Link  className='flex-1 text-slate-700 font-semibold  hover:underline truncate' to={`/listing/${spaces._id}`}>
+          <p > {spaces.name}</p>
+        </Link>
+
+        <div className='flex flex-col item-center'>
+       <button className='text-red-700 uppercase'>Delete</button>
+        <button className=' text-green-700 uppercase'>Edit</button>
+        </div>
+
+
+        </div>
+      ))}
+      </div>
+}
     </div>
   )
 }
