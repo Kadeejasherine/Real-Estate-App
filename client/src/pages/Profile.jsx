@@ -18,6 +18,7 @@ export default function Profile() {
  const [fileUploadError,setFileUploadError] = useState(false);
  const [showspacesError, setshowspacesError] = useState(false)
  const [userSpaces, setuserSpaces] = useState([])
+ const [deleteError, setdeleteError] = useState(false)
 const [formData, setFormData] = useState({})
 const [updateSuccess, setupdateSuccess] = useState(false)
 
@@ -131,6 +132,24 @@ try {
   setshowspacesError(true);
 }
 }
+
+const handleDeleteSpace =async(listingId)=>{
+try {
+  setdeleteError(false);
+  const res = await fetch(`/api/listing/delete/${listingId}`,{
+method :"DELETE"
+  })
+  const data = await res.json();
+  if(data.success === false){
+    setdeleteError(true);
+    return;
+  }
+  setdeleteError(false);
+  setuserSpaces((prev)=>prev.filter((listing)=>listing._id !== listingId))
+} catch (error) {
+  setdeleteError(true);
+}
+}
   
   return (
     <div className='p-3 max-w-lg mx-auto'>
@@ -176,8 +195,10 @@ try {
         </Link>
 
         <div className='flex flex-col item-center'>
-       <button className='text-red-700 uppercase'>Delete</button>
+       <button onClick={()=>handleDeleteSpace(spaces._id)} className='text-red-700 uppercase'>Delete</button>
+       <Link to={`/update-listing/${spaces._id}`}>
         <button className=' text-green-700 uppercase'>Edit</button>
+        </Link>
         </div>
 
 
@@ -185,6 +206,7 @@ try {
       ))}
       </div>
 }
+<p className='text-red-600'>{deleteError ? "Error deleting": ""}</p>
     </div>
   )
 }
