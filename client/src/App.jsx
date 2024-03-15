@@ -10,6 +10,7 @@ import Header from './components/Header'
 import Private from './components/Private'
 import CreateLis from './pages/CreateLis'
 import UpdateLis from './pages/UpdateLis'
+import Listing from './pages/Listing'
 
 export default function App() {
   return (
@@ -18,7 +19,7 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Home/>} />
       <Route path="/about" element={<About/>} />
-      
+      <Route path="/listing/:listingId" element={<Listing/>} />
       <Route path="/sign-in" element={<SignIn/>} />
       <Route path="/sign-up" element={<SignUp/>} />
       <Route element={<Private/>}>
