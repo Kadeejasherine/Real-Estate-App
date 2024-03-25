@@ -11,6 +11,7 @@ import Private from './components/Private'
 import CreateLis from './pages/CreateLis'
 import UpdateLis from './pages/UpdateLis'
 import Listing from './pages/Listing'
+import Search from './pages/Search'
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
       <Route path="/listing/:listingId" element={<Listing/>} />
       <Route path="/sign-in" element={<SignIn/>} />
       <Route path="/sign-up" element={<SignUp/>} />
+      <Route path="/search" element={<Search/>} />
       <Route element={<Private/>}>
       <Route path="/profile" element={<Profile/>} />
       <Route path="/create-listing" element={<CreateLis/>} />

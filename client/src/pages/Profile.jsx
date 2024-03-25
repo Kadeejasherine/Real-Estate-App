@@ -171,8 +171,8 @@ method :"DELETE"
        <input type="email" placeholder='email' defaultValue={currentUser.email} onChange={handleChange} className='border p-3 rounded-lg bg-gray-100' id='email' />
        <input type="password" placeholder='password' onChange={handleChange} className='border p-3 rounded-lg bg-gray-100' id='password'/>
        <button disabled={loading} className='bg-red-600 p-3 rounded-lg text-white hover:opacity-90 disabled:opacity-70'>{loading ? 'Loading...' : 'UPDATE'}</button>
-       <Link to={"/create-listing"} className='uppercase bg-slate-800 p-3 rounded-lg text-white hover:opacity-90 text-center'>Create Listing</Link>
-       <button onClick={handleShowSpaces} type='button' className='bg-green-600 p-3 rounded-lg text-white hover:opacity-90 disabled:opacity-70 text-center uppercase'>Show Spaces</button>
+       <Link to={"/create-listing"} className='uppercase bg-slate-900 p-3 rounded-lg text-white hover:opacity-90 text-center'>Create Listing</Link>
+       <button onClick={handleShowSpaces} type='button' className=' border border-b-red-600 border-r-red-600 border-l-orange-400 border-t-red-500  p-3 rounded-lg hover:opacity-90 disabled:opacity-70 text-center uppercase text-black font-medium'>Show Spaces</button>
 
       </form>
       <div className='flex justify-between mt-5'>
@@ -197,7 +197,7 @@ method :"DELETE"
         <div className='flex flex-col item-center'>
        <button onClick={()=>handleDeleteSpace(spaces._id)} className='text-red-700 uppercase'>Delete</button>
        <Link to={`/update-listing/${spaces._id}`}>
-        <button className=' text-green-700 uppercase'>Edit</button>
+        <button className=' text-slate-600 uppercase'>Edit</button>
         </Link>
         </div>
 
