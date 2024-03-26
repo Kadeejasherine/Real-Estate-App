@@ -52,11 +52,11 @@ setSaleListings(data);
     <div>
     {/* top */}
     <div className='flex flex-col gap-6 p-28 px-3 max-w-6xl mx-auto'>
-    <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Find your next <span className='text-slate-500'>perfect</span>
+    <h1 className='text-slate-700 font-bold text-3xl lg:text-6xl'>Discover your next <span className='text-slate-500'>perfect</span>
      <br/>
-     space with ease </h1>
+     space with ease</h1>
 <div className=" text-gray-400 text-xs sm:text-sm">
-UrbanBite is the best place to find your next perfect place to live.
+UrbanBite is the best place to find your next perfect space to live.
 <br />
 We have a wide range of properties for you to choose from.
 </div>
